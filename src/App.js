@@ -15,7 +15,8 @@ function App() {
   }
 
   const handleQuarter = () => {
-    if (quarter < 4) setQuarter(quarter + 1);
+    if (quarter < 4) setQuarter(quarter + 1)
+    else if (quarter === 4) setQuarter(0);
   }
 
   return (
