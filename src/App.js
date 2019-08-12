@@ -6,12 +6,18 @@ function App() {
    // set state
   const [homeScore, setHomeScore] = useState(0);
   const [awayScore, setAwayScore] = useState(0);
+  const [down, setDown] = useState(1);
   const [quarter, setQuarter] = useState(0);
 
   // handlers
   const handleScore = (team, points) => {
     if (team === "home") setHomeScore(homeScore + points);
     else if (team === "away") setAwayScore(awayScore + points);
+  }
+
+  const handleDown = () => {
+    if (down < 4) setDown(down + 1);
+    else if (down === 4) setDown(1);
   }
 
   const handleQuarter = () => {
@@ -33,7 +39,7 @@ function App() {
             <div className="away__score">{awayScore}</div>      
           </div>
         </div>
-        <BottomRow quarter={quarter}/>
+        <BottomRow down={down} quarter={quarter}/>
       </section>
       <section className="buttons">
         <div className="homeButtons">
@@ -46,6 +52,7 @@ function App() {
         </div>
         <div>
           <button className="bottomButtons" onClick={() => handleQuarter()}>Next Quarter</button>
+          <button className="bottomButtons" onClick={() => handleDown()}>Next Down</button>
         </div>
       </section>
     </div>
