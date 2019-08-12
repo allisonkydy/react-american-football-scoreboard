@@ -3,14 +3,19 @@ import "./App.css";
 import BottomRow from "./BottomRow";
 
 function App() {
-   // state hooks
+   // set state
   const [homeScore, setHomeScore] = useState(0);
   const [awayScore, setAwayScore] = useState(0);
+  const [quarter, setQuarter] = useState(0);
 
-  // handler
+  // handlers
   const handleScore = (team, points) => {
     if (team === "home") setHomeScore(homeScore + points);
     else if (team === "away") setAwayScore(awayScore + points);
+  }
+
+  const handleQuarter = () => {
+    if (quarter < 4) setQuarter(quarter + 1);
   }
 
   return (
@@ -24,10 +29,10 @@ function App() {
           <div className="timer">00:03</div>
           <div className="away">
             <h2 className="away__name">Tigers</h2>
-            <div className="away__score">{awayScore}</div>
+            <div className="away__score">{awayScore}</div>      
           </div>
         </div>
-        <BottomRow />
+        <BottomRow quarter={quarter}/>
       </section>
       <section className="buttons">
         <div className="homeButtons">
@@ -37,6 +42,9 @@ function App() {
         <div className="awayButtons">
           <button className="awayButtons__touchdown" onClick={() => handleScore("away", 7)}>Away Touchdown</button>
           <button className="awayButtons__fieldGoal" onClick={() => handleScore("away", 3)}>Away Field Goal</button>
+        </div>
+        <div>
+          <button className="bottomButtons" onClick={() => handleQuarter()}>Next Quarter</button>
         </div>
       </section>
     </div>
