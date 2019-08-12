@@ -3,8 +3,15 @@ import "./App.css";
 import BottomRow from "./BottomRow";
 
 function App() {
+   // state hooks
   const [homeScore, setHomeScore] = useState(0);
   const [awayScore, setAwayScore] = useState(0);
+
+  // handler
+  const handleScore = (team, points) => {
+    if (team === "home") setHomeScore(homeScore + points);
+    else if (team === "away") setAwayScore(awayScore + points);
+  }
 
   return (
     <div className="container">
@@ -24,12 +31,12 @@ function App() {
       </section>
       <section className="buttons">
         <div className="homeButtons">
-          <button className="homeButtons__touchdown" onClick={() => setHomeScore(homeScore + 7)}>Home Touchdown</button>
-          <button className="homeButtons__fieldGoal" onClick={() => setHomeScore(homeScore + 3)}>Home Field Goal</button>
+          <button className="homeButtons__touchdown" onClick={() => handleScore("home", 7)}>Home Touchdown</button>
+          <button className="homeButtons__fieldGoal" onClick={() => handleScore("home", 3)}>Home Field Goal</button>
         </div>
         <div className="awayButtons">
-          <button className="awayButtons__touchdown" onClick={() => setAwayScore(awayScore + 7)}>Away Touchdown</button>
-          <button className="awayButtons__fieldGoal" onClick={() => setAwayScore(awayScore + 3)}>Away Field Goal</button>
+          <button className="awayButtons__touchdown" onClick={() => handleScore("away", 7)}>Away Touchdown</button>
+          <button className="awayButtons__fieldGoal" onClick={() => handleScore("away", 3)}>Away Field Goal</button>
         </div>
       </section>
     </div>
