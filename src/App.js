@@ -7,7 +7,7 @@ function App() {
   const [homeScore, setHomeScore] = useState(0);
   const [awayScore, setAwayScore] = useState(0);
   const [down, setDown] = useState(1);
-  const [quarter, setQuarter] = useState(0);
+  const [quarter, setQuarter] = useState(1);
 
   // handlers
   const handleScore = (team, points) => {
@@ -15,14 +15,9 @@ function App() {
     else if (team === "away") setAwayScore(awayScore + points);
   }
 
-  const handleDown = () => {
-    if (down < 4) setDown(down + 1);
-    else if (down === 4) setDown(1);
-  }
-
-  const handleQuarter = () => {
-    if (quarter < 4) setQuarter(quarter + 1)
-    else if (quarter === 4) setQuarter(0);
+  const handleDownQuarter = (element, setter) => {
+    if (element < 4) setter(element + 1);
+    else if (element === 4) setter(1);
   }
 
   return (
@@ -51,8 +46,8 @@ function App() {
           <button className="awayButtons__fieldGoal" onClick={() => handleScore("away", 3)}>Away Field Goal</button>
         </div>
         <div>
-          <button className="bottomButtons" onClick={() => handleQuarter()}>Next Quarter</button>
-          <button className="bottomButtons" onClick={() => handleDown()}>Next Down</button>
+          <button className="bottomButtons" onClick={() => handleDownQuarter(down, setDown)}>Next Down</button>
+          <button className="bottomButtons" onClick={() => handleDownQuarter(quarter, setQuarter)}>Next Quarter</button>
         </div>
       </section>
     </div>
