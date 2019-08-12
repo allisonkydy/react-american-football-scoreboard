@@ -3,6 +3,7 @@ import "./App.css";
 import TopRow from "./TopRow";
 import BottomRow from "./BottomRow";
 import ScoreButtons from "./ScoreButtons";
+import BottomButtons from "./BottomButtons";
 
 function App() {
    // set state
@@ -42,17 +43,10 @@ function App() {
       </section>
       <section className="buttons">
         <ScoreButtons handleScore={handleScore}/>
-        <div>
-          <button className="bottomButtons" onClick={() => handleDownQuarter(down, setDown)}>Next Down</button>
-          <button className="bottomButtons" onClick={() => handleDownQuarter(quarter, setQuarter)}>Next Quarter</button>
-          <button className="bottomButtons" onClick={() => handleBallOn()}>Move Ball</button>
-          <button className="bottomButtons" onClick={() => handleToGo()}>Change To Go</button>
-        </div>
+        <BottomButtons handleDownQuarter={handleDownQuarter} down={down} setDown={setDown} quarter={quarter} setQuarter={setQuarter} handleBallOn={handleBallOn} handleToGo={handleToGo}/>
       </section>
     </div>
   );
 }
-
-
 
 export default App;
